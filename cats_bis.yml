@@ -1,0 +1,145 @@
+--- 
+physics: 
+  Physics - History of Physics: physics.hist-ph
+  Physics - Popular Physics: physics.pop-ph
+  Physics - Medical Physics: physics.med-ph
+  Physics - Space Physics: physics.space-ph
+  Physics - Classical Physics: physics.class-ph
+  Physics - Physics Education: physics.ed-ph
+  Physics - General Physics: physics.gen-ph
+  Physics - Plasma Physics: physics.plasm-ph
+  Physics - Data Analysis; Statistics and Probability: physics.data-an
+  Physics - Fluid Dynamics: physics.flu-dyn
+  Physics - Computational Physics: physics.comp-ph
+  Physics - Geophysics: physics.geo-ph
+  Physics - Physics and Society: physics.soc-ph
+  Physics - Atomic and Molecular Clusters: physics.atm-clus
+  Physics - Chemical Physics: physics.chem-ph
+  Physics - Accelerator Physics: physics.acc-ph
+  Physics - Instrumentation and Detectors: physics.ins-det
+  Physics - Biological Physics: physics.bio-ph
+  Physics - Optics: physics.optics
+  Physics - Atmospheric and Oceanic Physics: physics.ao-ph
+  Physics - Atomic Physics: physics.atom-ph
+math: 
+  Mathematics - Information Theory: math.IT
+  Mathematics - Algebraic Topology: math.AT
+  Mathematics - Complex Variables: math.CV
+  Mathematics - Operator Algebras: math.OA
+  Mathematics - Category Theory: math.CT
+  Mathematics - History and Overview: math.HO
+  Mathematics - Number Theory: math.NT
+  Mathematics - Numerical Analysis: math.NA
+  Mathematics - Mathematical Physics: math.MP
+  Mathematics - Group Theory: math.GR
+  Mathematics - Probability: math.PR
+  Mathematics - Geometric Topology: math.GT
+  Mathematics - Combinatorics: math.CO
+  Mathematics - Statistics: math.ST
+  Mathematics - General Mathematics: math.GM
+  Mathematics - Rings and Algebras: math.RA
+  Mathematics - Logic: math.LO
+  Mathematics - Commutative Algebra: math.AC
+  Mathematics - Representation Theory: math.RT
+  Mathematics - Spectral Theory: math.SP
+  Mathematics - General Topology: math.GN
+  Mathematics - Algebraic Geometry: math.AG
+  Mathematics - Analysis of PDEs: math.AP
+  Mathematics - Differential Geometry: math.DG
+  Mathematics - K-Theory and Homology: math.KT
+  Mathematics - Classical Analysis and ODEs: math.CA
+  Mathematics - Metric Geometry: math.MG
+  Mathematics - Quantum Algebra: math.QA
+  Mathematics - Optimization and Control: math.OC
+  Mathematics - Symplectic Geometry: math.SG
+  Mathematics - Functional Analysis: math.FA
+  Mathematics - Dynamical Systems: math.DS
+cond-mat: 
+  Physics - Superconductivity: cond-mat.supr-con
+  Physics - Disordered Systems and Neural Networks: cond-mat.dis-nn
+  Physics - Soft Condensed Matter: cond-mat.soft
+  Physics - Strongly Correlated Electrons: cond-mat.str-el
+  Physics - Mesoscopic Systems and Quantum Hall Effect: cond-mat.mes-hall
+  Physics - Other: cond-mat.other
+  Physics - Materials Science: cond-mat.mtrl-sci
+  Physics - Statistical Mechanics: cond-mat.stat-mech
+q-bio: 
+  Quantitative Biology - Genomics: q-bio.GN
+  Quantitative Biology - Subcellular Processes: q-bio.SC
+  Quantitative Biology - Neurons and Cognition: q-bio.NC
+  Quantitative Biology - Biomolecules: q-bio.BM
+  Quantitative Biology - Populations and Evolution: q-bio.PE
+  Quantitative Biology - Molecular Networks: q-bio.MN
+  Quantitative Biology - Cell Behavior: q-bio.CB
+  Quantitative Biology - Quantitative Methods: q-bio.QM
+  Quantitative Biology - Other: q-bio.OT
+  Quantitative Biology - Tissues and Organs: q-bio.TO
+nlin: 
+  Nonlinear Sciences - Pattern Formation and Solitons: nlin.PS
+  Nonlinear Sciences - Cellular Automata and Lattice Gases: nlin.CG
+  Nonlinear Sciences - Chaotic Dynamics: nlin.CD
+  Nonlinear Sciences - Adaptation and Self-Organizing Systems: nlin.AO
+  Nonlinear Sciences - Exactly Solvable and Integrable Systems: nlin.SI
+cs: 
+  Computer Science - Mathematical Software: cs.MS
+  Computer Science - Computational Engineering; Finance; and Science: cs.CE
+  Computer Science - Computer Science and Game Theory: cs.GT
+  Computer Science - Networking and Internet Architecture: cs.NI
+  Computer Science - Numerical Analysis: cs.NA
+  Computer Science - Programming Languages: cs.PL
+  Computer Science - Computational Geometry: cs.CG
+  Computer Science - Data Structures and Algorithms: cs.DS
+  Computer Science - Multimedia: cs.MM
+  Computer Science - Distributed; Parallel; and Cluster Computing: cs.DC
+  Computer Science - Computation and Language: cs.CL
+  Computer Science - Software Engineering: cs.SE
+  Computer Science - Human-Computer Interaction: cs.HC
+  Computer Science - Symbolic Computation: cs.SC
+  Computer Science - Computational Complexity: cs.CC
+  Computer Science - Information Theory: cs.IT
+  Computer Science - Information Retrieval: cs.IR
+  Computer Science - Discrete Mathematics: cs.DM
+  Computer Science - Computer Vision and Pattern Recognition: cs.CV
+  Computer Science - Robotics: cs.RO
+  Computer Science - Neural and Evolutionary Computing: cs.NE
+  Computer Science - Computers and Society: cs.CY
+  Computer Science - Multiagent Systems: cs.MA
+  Computer Science - Databases: cs.DB
+  Computer Science - Logic in Computer Science: cs.LO
+  Computer Science - Sound: cs.SD
+  Computer Science - Learning: cs.LG
+  Computer Science - Artificial Intelligence: cs.AI
+  Computer Science - Other: cs.OH
+  Computer Science - Performance: cs.PF
+  Computer Science - Digital Libraries: cs.DL
+  Computer Science - Architecture: cs.AR
+  Computer Science - General Literature: cs.GL
+  Computer Science - Cryptography and Security: cs.CR
+  Computer Science - Graphics: cs.GR
+  Computer Science - Operating Systems: cs.OS
+hep: 
+  High Energy Physics - Phenomenology: hep-ph
+  High Energy Physics - Theory: hep-th
+  High Energy Physics - Experiment: hep-ex
+  High Energy Physics - Lattice: hep-lat
+root: 
+  Computer Science: cs
+  Quantitative Biology: q-bio
+  Nuclear Experiment: nucl-ex
+  Mathematical Physics: math-ph
+  Mathematics: math
+  Quantum Physics: quant-ph
+  Condensed Matter: cond-mat
+  Statistics: stat
+  Nuclear Theory: nucl-th
+  Physics: physics
+  General Relativity and Quantum Cosmology: gr-qc
+  Nonlinear Sciences: nlin
+  Astrophysics: astro-ph
+  High Energy Physics: hep
+stat: 
+  Statistics - Computation: stat.CO
+  Statistics - Theory: stat.TH
+  Statistics - Machine Learning: stat.ML
+  Statistics - Applications: stat.AP
+  Statistics - Methodology: stat.ME
