@@ -23,9 +23,9 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 					author.uri(a.attributes['href'])
 				end
 			end
-			entry.link(:type => 'application/epub+zip',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition' , :title => "Download EPUB")
-			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition' , :title => "Download PDF")
-			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition', :title => "Download PS" )
+			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' , :title => "Download PDF")
+			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access', :title => "Download PS" )
+			#entry.link(:type => 'application/epub+zip',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' , :title => "Download pdf like an EPUB") #aldiko do not handle pdf links at the moment...
 			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
 				entry.category(:label => current_cat.split('.').first, :term => current_cat.split('.').first)	if current_cat['.']
 				entry.category(:label => current_cat, :term => current_cat)	
