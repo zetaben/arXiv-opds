@@ -14,7 +14,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 			id=rdf_entry.at('./xmlns:link').text
 			entry.id(id)
 			entry.updated(updated)
-			entry.summary({:type => 'html'}, rdf_entry.at('./xmlns:description'))
+			entry.summary({:type => 'html'}, rdf_entry.at('./xmlns:description').text)
 			creators=rdf_entry.at('./dc:creator').text
 			Nokogiri::XML(creators).xpath("//a").each do |a|
 				entry.author do |author|
@@ -23,9 +23,10 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 				end
 			end
 			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' )
-			entry.link(:type => 'application/ps',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' )
-				entry.category(current_cat)	
-				entry.category(current_cat.split('.').first)	if current_cat['.']
+			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' )
+			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
+				entry.category(:label => current_cat)	
+				entry.category(:label => current_cat.split('.').first)	if current_cat['.']
 				entry.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}", :rel => 'subsection', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
 			
 		end
