@@ -32,7 +32,7 @@ get '/feed/*.atom' do
 end
 
 get '/opensearchdescription.xml' do 
-	content_type 'application/opensearchdescription+xml', :charset => 'utf-8'
+	content_type 'application/xml'
 	builder :opensearch_description
 end
 
