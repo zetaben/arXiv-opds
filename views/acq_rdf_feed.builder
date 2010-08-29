@@ -7,6 +7,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 	rdf_feed.xpath('/rdf:RDF/xmlns:channel/dc:*',rdf_feed.namespaces).each do |dc|
 		feed.tag!("dc:#{dc.name}",dc.text)
 	end
+	feed.link(:type => 'application/atom+xml',:href => request.url, :rel => 'self', :title => "Current Feed" )
 
 	rdf_feed.xpath('/rdf:RDF/xmlns:item',rdf_feed.namespaces).each do |rdf_entry|
 		feed.entry do |entry|
@@ -22,8 +23,8 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 					author.uri(a.attributes['href'])
 				end
 			end
-			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' )
-			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' )
+			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' , :title => "Download PDF")
+			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access', :title => "Download PS" )
 			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
 				entry.category(:label => current_cat)	
 				entry.category(:label => current_cat.split('.').first)	if current_cat['.']
