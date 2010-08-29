@@ -31,6 +31,11 @@ get '/feed/*.atom' do
 	builder :acq_rdf_feed, :locals => {:rdf_feed => rdf_feed, :current_cat => id}
 end
 
+get '/opensearchdescription.xml' do 
+	content_type 'application/opensearchdescription+xml', :charset => 'utf-8'
+	builder :opensearch_description
+end
+
 
 get '/subcats/' do redirect('/catalog.atom') end
 get '/feed/' do redirect('/catalog.atom') end
