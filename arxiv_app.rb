@@ -46,13 +46,26 @@ get '/search/' do
 	
 	namespaces=feed.namespaces.to_hash.merge({ 'xmlns:opensearch'=>"http://a9.com/-/spec/opensearch/1.1/","xmlns"=>"http://www.w3.org/2005/Atom"})
 	STDERR.puts namespaces.inspect
-	feedel=feed.at('/xmlns:feed',namespaces)
 	total=feed.at('/xmlns:feed/opensearch:totalResults',namespaces).text.to_i
 	start=feed.at('/xmlns:feed/opensearch:startIndex',namespaces).text.to_i
 	perpage=feed.at('/xmlns:feed/opensearch:itemsPerPage',namespaces).text.to_i
 
-	feedel.add_child(Nokogiri::XML::Node.new('<link href="'+burl+'&start='+(start+perpage).to_s+'" rel="next" title="Next page"/>',feed)) unless start+perpage > total
-	feedel.add_child(Nokogiri::XML::Node.new('<link href="'+burl+'&start='+(start-perpage).to_s+'" rel="next" title="Next page"/>',feed)) unless start-perpage < 0
+	feedel=feed.at('/xmlns:feed/xmlns:entry',namespaces)
+	unless start+perpage > total
+	link=Nokogiri::XML::Node.new('link',feed)
+	link['rel']='next'
+	link['title']='Next Page'
+	link['href']="/search/?q=#{ params[:q]}&start=#{(start+perpage)}"
+	feedel.add_previous_sibling(link)
+	end
+	unless start-perpage < 0
+	link=Nokogiri::XML::Node.new('link',feed)
+	link['rel']='prev'
+	link['title']='Previous Page'
+	link['href']="/search/?q=#{ params[:q]}&start=#{(start-perpage)}"
+	feedel.add_previous_sibling(link)
+	end
+
 	feed.xpath('/xmlns:feed/xmlns:entry',namespaces).each do |ent|
 		link=ent.at('./xmlns:link[@type="application/pdf"]',namespaces)
 		acq_link=link.dup
