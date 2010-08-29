@@ -23,6 +23,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 					author.uri(a.attributes['href'])
 				end
 			end
+			entry.link(:type => 'application/epub+zip',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition' , :title => "Download EPUB")
 			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition' , :title => "Download PDF")
 			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition', :title => "Download PS" )
 			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
