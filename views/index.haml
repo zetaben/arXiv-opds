@@ -1,0 +1,32 @@
+!!! XML
+!!!
+%html
+  %head
+    %title ArXiv OPDS Catalog
+    %link(rel="stylesheet" href="/style.css")
+    %link(rel="favicon" href="/favicon.ico")
+    %link(rel="related" type="application/atom+xml;profile=opds-catalog" title="ArXiv OPDS Catalog" href="/catalog.atom")/
+  %body
+    #content 
+      %h1 ArXiv OPDS Catalog
+      %p 
+        This is the html landing page for arXiv OPDS Catalog.
+        This website acts as a middle man between 
+        %a(href="http://arxiv.org") arXiv 
+        API and the 
+        %a(href="http://opds-spec.org") OPDS 
+        ecosystem.
+        If you have an OPDS enabled client you may be more interested by
+        %a(href="/catalog.atom" rel="related" type="application/atom+xml;profile=opds-catalog") our OPDS Catalog
+        \:
+        %tt http://arXiv-opds.heroku.com/catalog.atom
+
+      %p Such clients include (but not limited to) :
+      %ul 
+        %li 
+          %a(href="http://www.aldiko.com/") Aldiko on Android
+        %li 
+          %a(href="http://itunes.apple.com/us/app/stanza/id284956128") Stanza on iOS
+      %p
+        This project is open source and can be found at
+        %a(href="http://github.com/zetaben/arXiv-opds") Github.

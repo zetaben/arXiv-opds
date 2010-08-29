@@ -1,0 +1,43 @@
+body 
+{
+	background-color: #A9D0F5;
+	background-image: url('/logo_opds_arxiv.gif');
+	background-position:top right;
+	background-repeat: no-repeat;
+}
+
+#content
+{
+margin-top:100px;
+margin-left:25%;
+padding:5%;
+padding-top:2%;
+padding-bottom:8%;
+width:50%;
+background-color:#FBFBEF;
+border-radius:30px;
+-webkit-border-radius:30px;
+border:4px solid #99C0E5;
+}
+
+h1
+{
+	font-family:Candara, Futura, "sans-serif";
+}
+
+p
+{
+text-indent:1em;
+}
+
+a, a:visited
+{
+	color:#000;
+	text-decoration:none;
+	border-bottom: 1px dashed #99C0E5;
+}
+
+a:hover
+{
+	border-bottom: 2px solid #99C0E5;
+}
