@@ -10,7 +10,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 	end
 	feed.link(:type => 'application/atom+xml',:href => request.url, :rel => 'self', :title => "Current Feed" )
 	feed.link(:type => 'application/atom+xml',:href => '/catalog.atom', :rel => 'start', :title => "Root catalog" )
-	entry.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}", :rel => 'up', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
+	feed.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}", :rel => 'up', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
 
 	rdf_feed.xpath('/rdf:RDF/xmlns:item',rdf_feed.namespaces).each do |rdf_entry|
 		feed.entry do |entry|
@@ -34,7 +34,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access', :title => "Download PS" )
 			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
 			entry.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}", :rel => 'subsection', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
-			entry.link(:type => 'image/png', :href => "http://www.gravatar.com/avatar/#{Digest::RMD160.hexdigest(id)}?d=monsterid", :rel => "http://opds-spec.org/image/thumbnail" )
+			entry.link(:type => 'image/png', :href => "http://www.gravatar.com/avatar/#{Digest::RMD160.hexdigest(id)}?d=identicon", :rel => "http://opds-spec.org/image/thumbnail" )
 
 		end
 	end
