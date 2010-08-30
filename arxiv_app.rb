@@ -58,11 +58,24 @@ get '/search/' do
 	perpage=feed.at('/xmlns:feed/opensearch:itemsPerPage',namespaces).text.to_i
 
 	feedel=feed.at('/xmlns:feed/xmlns:entry',namespaces)
+	link=Nokogiri::XML::Node.new('link',feed)
+	link['rel']='search'
+	link['title']='Search Arxiv'
+	link['href']='/search/?q={searchTerms}'
+	link['type']='application/atom+xml'
+	feedel.add_previous_sibling(link)
+	link=Nokogiri::XML::Node.new('link',feed)
+	link['rel']='search'
+	link['title']='Search Arxiv'
+	link['type']='application/opensearchdescription+xml'
+	link['href']='/opensearchdescription.xml'
+	feedel.add_previous_sibling(link)
 	unless start+perpage > total
 		link=Nokogiri::XML::Node.new('link',feed)
 		link['rel']='next'
 		link['title']='Next Page'
 		link['href']="/search/?q=#{ params[:q]}&start=#{(start+perpage)}"
+		link['type']='application/atom+xml'
 		feedel.add_previous_sibling(link)
 	end
 	unless start-perpage < 0
@@ -70,6 +83,7 @@ get '/search/' do
 		link['rel']='prev'
 		link['title']='Previous Page'
 		link['href']="/search/?q=#{ params[:q]}&start=#{(start-perpage)}"
+		link['type']='application/atom+xml'
 		feedel.add_previous_sibling(link)
 	end
 
