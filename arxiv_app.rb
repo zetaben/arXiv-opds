@@ -45,7 +45,7 @@ end
 
 get '/search/' do
 	redirect('/catalog.atom') if params[:q].nil?
-	etag global_etag+"search_#{params[q]}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
+	etag global_etag+"search_#{params[:q]}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
 	url="http://export.arxiv.org/api/query?search_query=all:#{ params[:q]}"
 	burl=url.dup
 	url+="&start=#{params[:start]}" if params[:start]
