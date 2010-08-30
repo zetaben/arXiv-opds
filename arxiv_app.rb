@@ -35,7 +35,7 @@ get '/feed/*.atom' do
 	content_type 'application/atom+xml', :charset => 'utf-8'
 	arxiv=ArXiv.new
 	rdf_feed=Nokogiri::XML(open(arxiv.url(id),{"User-Agent" => AGENT}))
-	builder :acq_rdf_feed, :locals => {:rdf_feed => rdf_feed, :current_cat => id}
+	builder :acq_rdf_feed, :locals => {:rdf_feed => rdf_feed, :current_cat => id,  :arxiv => arxiv}
 end
 
 get '/opensearchdescription.xml' do 
@@ -52,6 +52,7 @@ get '/search/' do
 	url+="&start=#{params[:start]}" if params[:start]
 	url+="&max_results=#{params[:max_results]}" if params[:max_results]
 	feed=Nokogiri::XML(open(url,{"User-Agent" => AGENT}))
+	arxiv=ArXiv.new
 
 	namespaces=feed.namespaces.to_hash.merge({ 'xmlns:opensearch'=>"http://a9.com/-/spec/opensearch/1.1/","xmlns"=>"http://www.w3.org/2005/Atom"})
 	total=feed.at('/xmlns:feed/opensearch:totalResults',namespaces).text.to_i
