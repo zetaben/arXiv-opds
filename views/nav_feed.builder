@@ -25,7 +25,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom') do |fe
 		 entry.link(:rel => 'subsection', :type => 'application/atom+xml', :title => "#{cat_name} articles", :href => "/feed/#{id}.atom")
 		 entry.link(:type => 'application/atom+xml', :title => "#{cat_name} articles", :href => "/feed/#{id}.atom") #preopds
 		end
-		entry.category(:label => cat_name, :term => id )
+		entry.category(:label => cat_name, :term => id , :scheme=>"http://arxiv.org/schemas/atom")
 		entry.link(:type => 'text/html',:href => "http://arxiv.org/list/#{id}/recent", :rel => 'alternate',  :title => "#{cat_name} html listing" )
 		entry.updated(Time.now.xmlschema)
 	end

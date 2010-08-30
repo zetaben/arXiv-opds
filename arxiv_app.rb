@@ -59,6 +59,7 @@ get '/search/' do
 	start=feed.at('/xmlns:feed/opensearch:startIndex',namespaces).text.to_i
 	perpage=feed.at('/xmlns:feed/opensearch:itemsPerPage',namespaces).text.to_i
 
+	feed.at('/xmlns:feed/xmlns:title',namespaces).content = "Search results for query all:#{ params[:q]}"
 	feedel=feed.at('/xmlns:feed/xmlns:entry',namespaces)
 	link=Nokogiri::XML::Node.new('link',feed)
 	link['rel']='search'
@@ -94,6 +95,15 @@ get '/search/' do
 		acq_link=link.dup
 		acq_link['rel']="http://opds-spec.org/acquisition/open-access"
 		ent.add_child(acq_link)
+		ent.xpath('./xmlns:category',namespaces).each do |cat|
+			cat['label']=arxiv.name(cat['term']) 
+			if cat['term']['.']
+				cat2=cat.dup
+				cat2['term']=cat2['term'].split('.').first
+				cat2['label']=arxiv.name(cat2['term'])
+				cat.add_previous_sibling(cat2)
+			end
+		end
 	end
 	content_type 'application/atom+xml', :charset => 'utf-8'
 	feed.to_s

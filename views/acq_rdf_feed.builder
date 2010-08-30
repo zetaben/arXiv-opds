@@ -31,8 +31,8 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 					auth.push [a.text,a.attributes['href']]
 				end
 			end
-			entry.category(:label => arxiv.name(current_cat.split('.').first), :term => current_cat.split('.').first)	if current_cat['.']
-			entry.category(:label => arxiv.name(current_cat), :term => current_cat)	
+			entry.category(:label => arxiv.name(current_cat.split('.').first), :term => current_cat.split('.').first , :scheme=>"http://arxiv.org/schemas/atom" )	if current_cat['.']
+			entry.category(:label => arxiv.name(current_cat), :term => current_cat, :scheme=>"http://arxiv.org/schemas/atom")	
 			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition/open-access' , :title => "Download PDF")
 			entry.link(:type => 'application/pdf',:href => id.gsub('/abs/','/pdf/'), :rel => 'http://opds-spec.org/acquisition' , :title => "Download PDF (preOPDS)") #preopds
 			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/ps/'), :rel => 'http://opds-spec.org/acquisition/open-access', :title => "Download PS" )
