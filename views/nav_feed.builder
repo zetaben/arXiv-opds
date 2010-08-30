@@ -17,11 +17,11 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom') do |fe
 	feed.entry do |entry|
 		entry.title cat_name
 		if arxiv.subcat?(id) && id!=current_cat
-		 entry.id  "/subcats/#{id}.atom"
+		 entry.id  "http://#{request.host}/subcats/#{id}.atom"
 		 entry.link(:rel => 'subsection', :type => 'application/atom+xml', :title => "#{cat_name} subcategories", :href => "/subcats/#{id}.atom")
 		 entry.link(:type => 'application/atom+xml', :title => "#{cat_name} subcategories", :href => "/subcats/#{id}.atom") #preopds
 		else
-		 entry.id  "/feed/#{id}.atom"
+		 entry.id  "http://#{request.host}/feed/#{id}.atom"
 		 entry.link(:rel => 'subsection', :type => 'application/atom+xml', :title => "#{cat_name} articles", :href => "/feed/#{id}.atom")
 		 entry.link(:type => 'application/atom+xml', :title => "#{cat_name} articles", :href => "/feed/#{id}.atom") #preopds
 		end
