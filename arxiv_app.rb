@@ -7,6 +7,7 @@ require 'nokogiri'
 require 'haml'
 
 global_etag="v0"
+AGENT="ArXiv-OPDS/0.1"
 
 get '/' do
 	haml :index
@@ -33,7 +34,7 @@ get '/feed/*.atom' do
 	etag global_etag+"feed_#{id}_#{Time.now.to_i/3600}"
 	content_type 'application/atom+xml', :charset => 'utf-8'
 	arxiv=ArXiv.new
-	rdf_feed=Nokogiri::XML(open(arxiv.url(id)))
+	rdf_feed=Nokogiri::XML(open(arxiv.url(id),{"User-Agent" => AGENT}))
 	builder :acq_rdf_feed, :locals => {:rdf_feed => rdf_feed, :current_cat => id}
 end
 
@@ -50,7 +51,7 @@ get '/search/' do
 	burl=url.dup
 	url+="&start=#{params[:start]}" if params[:start]
 	url+="&max_results=#{params[:max_results]}" if params[:max_results]
-	feed=Nokogiri::XML(open(url))
+	feed=Nokogiri::XML(open(url,{"User-Agent" => AGENT}))
 
 	namespaces=feed.namespaces.to_hash.merge({ 'xmlns:opensearch'=>"http://a9.com/-/spec/opensearch/1.1/","xmlns"=>"http://www.w3.org/2005/Atom"})
 	total=feed.at('/xmlns:feed/opensearch:totalResults',namespaces).text.to_i
