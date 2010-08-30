@@ -38,7 +38,6 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 			entry.link(:type => 'application/postscript',:href => id.gsub('/abs/','/ps/'), :rel => 'http://opds-spec.org/acquisition/open-access', :title => "Download PS" )
 			entry.link(:type => 'text/html',:href => id, :rel => 'alternate' )
 			entry.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}.atom", :rel => 'subsection', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
-			entry.link(:type => 'image/png', :href => "http://www.gravatar.com/avatar/#{Digest::RMD160.hexdigest(id)}?d=identicon", :rel => "http://opds-spec.org/image/thumbnail" )
 
 		end
 	end

@@ -78,11 +78,6 @@ get '/search/' do
 		acq_link=link.dup
 		acq_link['rel']="http://opds-spec.org/acquisition/open-access"
 		ent.add_child(acq_link)
-		link=Nokogiri::XML::Node.new('link',feed)
-		link['rel']='http://opds-spec.org/image/thumbnail'
-		link['title']='Icon'
-		link['href']="http://www.gravatar.com/avatar/#{Digest::RMD160.hexdigest(acq_link['href'])}?d=identicon"
-		ent.add_child(link)
 	end
 	content_type 'application/atom+xml', :charset => 'utf-8'
 	feed.to_s
