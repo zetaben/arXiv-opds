@@ -10,7 +10,7 @@ xml.feed("xml:lang" => "en-US", "xmlns" => 'http://www.w3.org/2005/Atom','xmlns:
 	end
 	feed.link(:type => 'application/atom+xml',:href => request.url, :rel => 'self', :title => "Current Feed" )
 	feed.link(:type => 'application/atom+xml',:href => '/catalog.atom', :rel => 'start', :title => "Root catalog" )
-	feed.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}", :rel => 'up', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
+	feed.link(:type => 'application/atom+xml', :href => "/subcats/#{current_cat.split('.').first}.atom", :rel => 'up', :title => "#{current_cat.split('.').first} subsections")	if current_cat['.']
 
 	feed.link(:type => 'application/opensearchdescription+xml', :href => '/opensearchdescription.xml', :rel => 'search', :title => 'Search ArXiv')
 	feed.link(:type => 'application/atom+xml', :href => '/search/?q={searchTerms}', :rel => 'search', :title => 'Search ArXiv')
