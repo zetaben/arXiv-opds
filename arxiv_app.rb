@@ -44,6 +44,12 @@ get '/opensearchdescription.xml' do
 	builder :opensearch_description
 end
 
+get '/robots.txt' do 
+	'User-agent: *'+"\n"+
+	'Disallow: /search/'+"\n"+
+	'Disallow: /feed/'+"\n"
+end
+
 get '/search/' do
 	redirect('/catalog.atom') if params[:q].nil?
 	etag global_etag+"search_#{params[:q]}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
