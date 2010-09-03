@@ -31,11 +31,15 @@ end
 
 get '/feed/*.atom' do 
 	id=params[:splat].first
-	etag global_etag+"feed_#{id}_#{Time.now.to_i/3600}"
-	content_type 'application/atom+xml', :charset => 'utf-8'
+	etag global_etag+"feed_#{id}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
+	url="http://export.arxiv.org/api/query?search_query=cat:#{id}&sortBy=submittedDate&sortOrder=descending"
+	url+="&max_results=20" unless params[:max_results]
 	arxiv=ArXiv.new
-	rdf_feed=Nokogiri::XML(open(arxiv.url(id),{"User-Agent" => AGENT}))
-	builder :acq_rdf_feed, :locals => {:rdf_feed => rdf_feed, :current_cat => id,  :arxiv => arxiv}
+	title=arxiv.name(id)
+	current_path="/feed/#{id}.atom?"
+	
+	content_type 'application/atom+xml', :charset => 'utf-8'
+	feed_to_opds(url,current_path,title,params).to_s
 end
 
 get '/opensearchdescription.xml' do 
@@ -53,8 +57,15 @@ end
 get '/search/' do
 	redirect('/catalog.atom') if params[:q].nil?
 	etag global_etag+"search_#{params[:q]}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
-	url="http://export.arxiv.org/api/query?search_query=all:#{ params[:q]}"
-	burl=url.dup
+	url="http://export.arxiv.org/api/query?search_query=all:#{ params[:q]}"	
+	title="Search results for query all:#{ params[:q]}"
+	current_path="/search/?q=#{ params[:q]}"
+
+	content_type 'application/atom+xml', :charset => 'utf-8'
+	feed_to_opds(url,current_path,title,params).to_s
+end
+
+def feed_to_opds(url,current_path,title,params)
 	url+="&start=#{params[:start]}" if params[:start]
 	url+="&max_results=#{params[:max_results]}" if params[:max_results]
 	feed=Nokogiri::XML(open(url,{"User-Agent" => AGENT}))
@@ -65,8 +76,10 @@ get '/search/' do
 	start=feed.at('/xmlns:feed/opensearch:startIndex',namespaces).text.to_i
 	perpage=feed.at('/xmlns:feed/opensearch:itemsPerPage',namespaces).text.to_i
 
-	feed.at('/xmlns:feed/xmlns:title',namespaces).content = "Search results for query all:#{ params[:q]}"
+	feed.at('/xmlns:feed/xmlns:title',namespaces).content = title
 	feedel=feed.at('/xmlns:feed/xmlns:entry',namespaces)
+	feedel=feed.at('/xmlns:feed/xmlns:id',namespaces) if feedel.nil?
+
 	link=Nokogiri::XML::Node.new('link',feed)
 	link['rel']='search'
 	link['title']='Search Arxiv'
@@ -83,7 +96,7 @@ get '/search/' do
 		link=Nokogiri::XML::Node.new('link',feed)
 		link['rel']='next'
 		link['title']='Next Page'
-		link['href']="/search/?q=#{ params[:q]}&start=#{(start+perpage)}"
+		link['href']="#{current_path}&start=#{(start+perpage)}"
 		link['type']='application/atom+xml'
 		feedel.add_previous_sibling(link)
 	end
@@ -91,7 +104,7 @@ get '/search/' do
 		link=Nokogiri::XML::Node.new('link',feed)
 		link['rel']='prev'
 		link['title']='Previous Page'
-		link['href']="/search/?q=#{ params[:q]}&start=#{(start-perpage)}"
+		link['href']="#{current_path}&start=#{(start-perpage)}"
 		link['type']='application/atom+xml'
 		feedel.add_previous_sibling(link)
 	end
@@ -111,8 +124,7 @@ get '/search/' do
 			end
 		end
 	end
-	content_type 'application/atom+xml', :charset => 'utf-8'
-	feed.to_s
+	feed
 end
 
 
