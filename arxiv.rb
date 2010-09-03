@@ -19,7 +19,7 @@ end
 
 def subcats(cat)
 	ret=[]
-	ret.push(['All' , cat]) if subcat?(cat)
+#	ret.push(['All' , cat]) if subcat?(cat)
 	ret+=@@cats[cat].to_a.sort_by(&:first)
 	ret
 end
