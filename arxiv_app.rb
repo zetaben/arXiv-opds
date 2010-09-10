@@ -114,14 +114,29 @@ def feed_to_opds(url,current_path,title,params)
 		acq_link=link.dup
 		acq_link['rel']="http://opds-spec.org/acquisition/open-access"
 		ent.add_child(acq_link)
+		cats=[]
 		ent.xpath('./xmlns:category',namespaces).each do |cat|
 			cat['label']=arxiv.name(cat['term']) 
+			cats.push cat['term']
 			if cat['term']['.']
 				cat2=cat.dup
 				cat2['term']=cat2['term'].split('.').first
 				cat2['label']=arxiv.name(cat2['term'])
 				cat.add_previous_sibling(cat2)
+				cat.add_previous_sibling(Nokogiri::XML::Text.new("\n",feed))
+				cats.push cat2['term'].split('.').first
 			end
+		end
+
+		cats.uniq.each do |cat_term|
+		link=Nokogiri::XML::Node.new('link',feed)
+		link['rel']='subsection'
+		link['title']="More articles in #{arxiv.name(cat_term)}"
+		link['href']="/feed/#{cat_term}.atom"
+		link['type']='application/atom+xml'
+		ent.add_child(link)
+		ent.add_child(Nokogiri::XML::Text.new("\n",feed))
+
 		end
 	end
 	feed
