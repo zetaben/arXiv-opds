@@ -117,8 +117,9 @@ def feed_to_opds(url,current_path,title,params)
 		cats=[]
 		ent.xpath('./xmlns:category',namespaces).each do |cat|
 			cat['label']=arxiv.name(cat['term']) 
-			cats.push cat['term']
-			if cat['term']['.']
+			known=arxiv.name(cat['term'])!=cat['term']
+			cats.push cat['term'] if known
+			if !cat['term']['.'].nil? && known
 				cat2=cat.dup
 				cat2['term']=cat2['term'].split('.').first
 				cat2['label']=arxiv.name(cat2['term'])
