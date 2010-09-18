@@ -130,7 +130,7 @@ def feed_to_opds(url,current_path,title,params)
 
 		cats.uniq.each do |cat_term|
 		link=Nokogiri::XML::Node.new('link',feed)
-		link['rel']='subsection'
+		link['rel']='related'
 		link['title']="More articles in #{arxiv.name(cat_term)}"
 		link['href']="/feed/#{cat_term}.atom"
 		link['type']='application/atom+xml'
