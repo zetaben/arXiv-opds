@@ -5,6 +5,7 @@ require 'builder'
 require 'open-uri'
 require 'nokogiri'
 require 'haml'
+require 'cgi'
 
 global_etag="v0"
 AGENT="ArXiv-OPDS/0.1"
@@ -57,7 +58,7 @@ end
 get '/search/' do
 	redirect('/catalog.atom') if params[:q].nil?
 	etag global_etag+"search_#{params[:q]}_#{params[:start]}_#{params[:max_results]}_#{Time.now.to_i/3600}"
-	url="http://export.arxiv.org/api/query?search_query=all:#{ params[:q]}"	
+	url="http://export.arxiv.org/api/query?search_query=all:#{CGI::escape(params[:q])}"	
 	title="Search results for query all:#{ params[:q]}"
 	current_path="/search/?q=#{ params[:q]}"
 
