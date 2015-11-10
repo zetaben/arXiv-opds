@@ -1,2 +1,2 @@
-require 'arxiv_app'
+require './arxiv_app'
 run Sinatra::Application

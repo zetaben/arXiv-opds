@@ -1,3 +1,5 @@
+require 'yaml'
+
 class ArXiv
 def initialize
 	@@cats=YAML.load(open('cats_bis.yml'))

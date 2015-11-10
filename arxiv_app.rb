@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'arxiv'
+require './arxiv'
 require 'builder'
 require 'open-uri'
 require 'nokogiri'
