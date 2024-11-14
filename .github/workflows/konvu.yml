@@ -1,0 +1,21 @@
+name: Konvu
+on:
+  # Schedule your job:
+  schedule:
+    - cron: "46 5 * * *" # Scans every day at 05:46 UTC
+  # Manual trigger from github action UI
+  workflow_dispatch:
+jobs:
+  konvu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ "17" ] # your java version
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: KonvuTeam/konvu-github-action@latest
+        with:
+          konvu-token: ${{ secrets.KONVU_TOKEN }}
+          konvu-alpha-dl-secret: ${{ secrets.KONVU_ALPHA_DL_SECRET }}
+          konvu-backend-url: "https://sensors.konvu.com"
